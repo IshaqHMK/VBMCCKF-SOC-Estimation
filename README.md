@@ -1,5 +1,5 @@
-````markdown
-# Variational Bayesian Maximum Correntropy CKF for Li Ion Battery SOC Estimation
+ 
+## Variational Bayesian Maximum Correntropy CKF for Li Ion Battery SOC Estimation
 
 This repository contains MATLAB code for state of charge (SOC) estimation of Li ion battery cells using the Variational Bayesian Maximum Correntropy Cubature Kalman Filter (VBMCCKF) and related filters.
 
