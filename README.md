@@ -1,132 +1,68 @@
- 
-## Variational Bayesian Maximum Correntropy CKF for Li Ion Battery SOC Estimation
+# VBMCCKF SOC Estimation (MATLAB)
 
-This repository contains MATLAB code for state of charge (SOC) estimation of Li ion battery cells using the Variational Bayesian Maximum Correntropy Cubature Kalman Filter (VBMCCKF) and related filters.
+MATLAB code, data, and figures for the four datasets used in the VBMCCKF SOC estimation paper. Each dataset folder is self-contained with scripts, .mat data, and generated plots.
 
-The implementation is based on the paper
+## Contents
 
-> I. Hafez, A. Wadi, M. F. Abdel Hafez, and A. A. Hussein,  
-> "Variational Bayesian Based Maximum Correntropy Cubature Kalman Filter Method for State of Charge Estimation of Li Ion Battery Cells,"  
-> IEEE Transactions on Vehicular Technology, vol. 72, no. 3, pp. 3090 to 3104, 2023.  
-> doi: 10.1109/TVT.2022.3216337
+- `0_paper/` PDF of the published paper.
+- `1_ConstPulse_Disch/` constant pulse discharge dataset and scripts.
+- `2_VariablePulseDisch/` variable pulse discharge dataset and scripts.
+- `3_LA92_Disch/` LA92 drive cycle discharge dataset and scripts.
+- `4_US06_Disch/` US06 drive cycle discharge dataset and scripts.
 
-A PDF of the paper is included in the `paper` folder.
+Each dataset folder includes:
+- MATLAB scripts (`main.m`, `T1_EKF_Main.m`, `T2_CKF_Main.m`, `T3_VBCKF_Main.m`, `T4_VMCCKF_Main.m`).
+- `.mat` files for model/data tables and results.
+- Figure outputs (`.fig`, `.png`, `.jpg`) from the runs.
+- `SOC - data/` raw data spreadsheets (`.xlsx`).
+- `slprj/` Simulink generated cache (safe to ignore).
 
----
+## How to run
 
-## Repository contents
-
-```text
-src/
-  models/      Battery models, OCV model, hysteresis model, parameter identification
-  filters/     EKF, CKF, VBCKF, VBMCCKF and other filter implementations
-  utils/       Helper functions, plotting, error metrics, data handling
-
-data/
-  Example datasets and profiles used for SOC estimation tests
-
-results/
-  Example figures, logs, and saved estimation results
-
-paper/
-  VBMCCKF_TVT2023.pdf    PDF of the published IEEE TVT paper
-
-README.md
-````
-
----
-
-## Requirements
-
-The code is written in MATLAB.
-
-Minimum setup:
-
-* MATLAB (any reasonably recent version that supports the scripts)
-* Any MATLAB toolboxes that were used in the original work, for example
-
-  * Optimization Toolbox
-  * Statistics and Machine Learning Toolbox
-
-The code is intended for research and academic use.
-
----
-
-## How to use
-
-1. Open the repository folder in MATLAB.
-
-2. Add the `src` folder and its subfolders to the MATLAB path:
+1. Open MATLAB.
+2. Change into a dataset folder, for example:
 
    ```matlab
-   addpath(genpath('src'));
+   cd('1_ConstPulse_Disch')
    ```
 
-3. Make sure the required data files are available in the `data` folder.
-
-4. Run one of the main scripts, for example:
+3. Run the main script:
 
    ```matlab
-   % Example: VBMCCKF SOC estimation
-   main_vbmcckf_soc;
-
-   % Example: comparison between filters
-   % main_compare_filters;
+   main
    ```
 
-Replace the script names above with the actual names of your main `.m` files that run the estimators and generate the results.
+4. Or run a specific filter:
 
----
+   ```matlab
+   T1_EKF_Main
+   T2_CKF_Main
+   T3_VBCKF_Main
+   T4_VMCCKF_Main
+   ```
 
-## Reproducing results
+Figures are saved in the same folder as the scripts.
 
-The repository is structured to reproduce the main results of the paper, including
+## Results preview
 
-* SOC estimation under different drive cycles
-* Comparison between EKF, CKF, VBCKF, and VBMCCKF
-* Error statistics and robustness to noise and outliers
+Examples of SOC estimation results from each dataset:
 
-Each main script in `src` contains comments that explain which data set it uses and which figures or tables in the paper it is related to.
+<p>
+  <img src="1_ConstPulse_Disch/TEST_ALL_SOC_Estimation.png" width="700" alt="Constant pulse discharge SOC estimation">
+</p>
+<p>
+  <img src="2_VariablePulseDisch/TEST_ALL_SOC_Estimation.png" width="700" alt="Variable pulse discharge SOC estimation">
+</p>
+<p>
+  <img src="3_LA92_Disch/TEST_ALL_SOC_Estimation.png" width="700" alt="LA92 drive cycle SOC estimation">
+</p>
+<p>
+  <img src="4_US06_Disch/TEST_ALL_SOC_Estimation.png" width="700" alt="US06 drive cycle SOC estimation">
+</p>
 
----
+## Paper
 
-## Citation
-
-If you use this repository, the code, or ideas from this work in your research, please cite the paper:
-
-```text
-I. Hafez, A. Wadi, M. F. Abdel Hafez, and A. A. Hussein,
-"Variational Bayesian Based Maximum Correntropy Cubature Kalman Filter Method for State of Charge Estimation of Li Ion Battery Cells,"
-IEEE Transactions on Vehicular Technology, vol. 72, no. 3, pp. 3090 to 3104, 2023.
+I. Hafez, A. Wadi, M. F. Abdel Hafez, and A. A. Hussein,  
+"Variational Bayesian Based Maximum Correntropy Cubature Kalman Filter Method for State of Charge Estimation of Li Ion Battery Cells,"  
+IEEE Transactions on Vehicular Technology, vol. 72, no. 3, pp. 3090-3104, 2023.  
 doi: 10.1109/TVT.2022.3216337.
-```
-
-You may also include a link to this GitHub repository.
-
----
-
-## Code ownership and contact
-
-All MATLAB scripting, implementation, and repository organization in this project are completely my own work, unless a specific file header clearly states otherwise.
-
-If you detect any mistake, bug, or inconsistency in the implementation, please contact me directly or open an issue in this repository.
-
-I am open to collaboration in state estimation and filtering for robotics, UAVs, Li ion batteries, and related mechatronic and control applications. If you are interested in collaboration in these areas, feel free to contact me.
-
-Contact email:
-
-```text
-ishaq.hmk@gmail.com
-```
-
----
-
-## License and reuse
-
-The code and material in this repository are provided for research and educational use.
-
-* All rights are reserved by the author.
-* If you would like to reuse the code in a commercial project or redistribute a modified version, please contact me to discuss permission and possible collaboration.
-* The author does not provide any warranty. Use this code at your own risk and always validate it for your specific application.
-
-```
