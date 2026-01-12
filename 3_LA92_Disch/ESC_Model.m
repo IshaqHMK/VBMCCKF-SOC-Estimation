@@ -1,0 +1,31 @@
+
+global Q R
+global Data_SOC Data_OCV Current Voltage Resistance k_steps Cn N Time TDiff SOC_TL OCV_TL
+global Resistor1 Resistor0 Capacitor1
+global M0 M Gamma 
+
+
+load('E2model.mat')
+ekfData.model = model;
+Tk = 35;
+
+% Load the cell model parameters
+Gamma  = getParamESC('GParam',Tk,model);
+M  = getParamESC('MParam',Tk,model);
+M0 = getParamESC('M0Param',Tk,model);
+
+
+% Gamma = 20;
+% M0 = 0.005;
+% M = 0.05;
+
+% Gamma = 50;
+% M0 = 0.01;
+% M = 0.04;
+% M0 = mean([0.026697315297385,0.012902239349071,0.006601176650224,0,2.114862521624190e-04,0.002542395121461,0.003459934789869,0.002646399898282]);
+% M = mean([0.247128362983502,0.148503222651360,0.081737140875625,0.080539543304412,0.047069443908724,0.044341699418566,0.033859532367786,0.098233428460509]);
+% Gamma = mean([56.507304633736474,5.126927665172528,2.499999962702471e+02,1.062427949107810e+02,82.168865664474380,61.749752200480295,58.646885652812620,1.000000033754431]);
+
+M0 = 0.005;
+M = 0.05;
+Gamma = 35; % (tuned)
