@@ -1,4 +1,4 @@
-# VBMCCKF SOC Estimation (MATLAB)
+# VBMCCKF SOC Estimation  
 
 MATLAB code, data, and figures for the four datasets used in the VBMCCKF SOC estimation paper. Each dataset folder is self-contained with scripts, .mat data, and generated plots.
 
